@@ -1,5 +1,8 @@
 #pragma once
 
+/***************************************************
+* e_ident marcros
+****************************************************/
 #define ELF_MAGIC_0 0x7f
 #define ELF_MAGIC_1 'E'
 #define ELF_MAGIC_2 'L'
