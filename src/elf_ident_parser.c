@@ -2,6 +2,15 @@
 #include <stdlib.h>
 #include "elf_parser.h"
 
+/**
+*
+*@brief Reads the ELF magic number from a file and validate it.
+*
+*@param magic_chars buffer to store the first EI_NIDENT bytes
+*@param file_ptr File pointer to the opened binary
+*@return int returns 0 if magic is valid , -1 otherwise
+*/
+
 int
 get_magic_number(unsigned char *magic_chars,FILE* file_ptr)
 {
@@ -21,6 +30,16 @@ get_magic_number(unsigned char *magic_chars,FILE* file_ptr)
 
 }
 
+
+/**
+*@brief Determines the ELF class (32bit/64bit) from the e_ident bytes 
+* 
+* 
+* @param magic_chars e_ident array ELF header
+* @param elf Pointer to ElfIdent struct to store the class
+* @return int 0 on success, -1 if class is invalid
+* 
+*/
 int
 get_elf_format(unsigned char *magic_chars,ElfIdent *elf)
 {
@@ -43,6 +62,14 @@ get_elf_format(unsigned char *magic_chars,ElfIdent *elf)
     return 0;
 }
 
+/**
+*@brief Determines the ELF data format (endiannes) from the e_ident bytes 
+* 
+* @param magic_chars e_ident array from ELF header.
+* @param elf Pointer to ElfIdent struct to store data format
+* @return int 0 on success, -1 if format is invalid
+* 
+*/
 int 
 get_ident_data_format(unsigned char *magic_chars,ElfIdent *elf)
 {
@@ -65,31 +92,53 @@ get_ident_data_format(unsigned char *magic_chars,ElfIdent *elf)
         return 0;
 }
 
+/**
+*@brief Extracts version, OS/ABI, and ABI version from e_ident 
+* 
+* 
+* @param magic_chars e_ident array from ELF header
+* @param elf Pointer to ElfIdent struct to store these values.
+* 
+*/
 void
 get_ident_other_data(unsigned char *magic_chars,ElfIdent *elf){
     elf->version=magic_chars[EI_NIDENT_VERSION];
-    printf("Version is %x\n",elf->version);
+    printf("Version is 0x%02x\n",elf->version);
 
     elf->osabi=magic_chars[EI_NIDENT_OSABI];
-    printf("OS/ABI is %x\n",elf->version);
+    printf("OS/ABI is 0x%02x\n",elf->version);
 
     elf->abi_version=magic_chars[EI_NIDENT_ABIVERSION];
-    printf("ABI Version is: %x\n",elf->abi_version);
+    printf("ABI Version is: 0x%02x\n",elf->abi_version);
 
 }
+
+/**
+ * @brief Dumps the raw ELF identification bytes
+ * 
+ * 
+ * @param magic_chars e_ident array from ELF header
+ * 
+*/
 
 void
 get_ident_dump(unsigned char *magic_chars){
     printf("Magic\t");
     for(unsigned int data=0;data<EI_NIDENT;data++){
-        printf("%x ",magic_chars[data]);
+        printf("%02x ",magic_chars[data]);
     }
     printf("\n");
 }
 
-
+/**
+ * @brief Main ELF parser for Phase 1: validate ELF and reads e_ident
+ * 
+ * 
+ * @param filename path to the binary file
+ * 
+*/
 void 
-parse_elf(const char *filename)
+parse_ident_elf(const char *filename)
 {
     ElfIdent eident_values;
 

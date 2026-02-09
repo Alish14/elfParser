@@ -4,7 +4,9 @@
 #include <stdint.h>
 #include "elf.h"
 
-
+/**
+* ident parser structures
+*/
 typedef enum{
     ELF_CLASS_NONE = 0,
     ELF_CLASS_32 = 1,
@@ -29,6 +31,14 @@ typedef struct{
 
 }ElfIdent;
 
-void parse_elf(const char *filename);
-
+/**
+* ident parser functions
+*/
+void parse_ident_elf(const char *filename);
+int get_magic_number(unsigned char *magic_chars,FILE* file_ptr);
+int get_elf_format(unsigned char *magic_chars,ElfIdent *elf);
+int get_ident_data_format(unsigned char *magic_chars,ElfIdent *elf);
+void get_ident_other_data(unsigned char *magic_chars,ElfIdent *elf);
+void get_ident_dump(unsigned char *magic_chars);
+void parse_ident_elf(const char *filename);
 #endif

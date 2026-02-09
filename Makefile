@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -g -Iinclude
-SRC=src/main.c src/elf_parser.c
+SRC=src/main.c src/elf_ident_parser.c
 OUT=elf_parser
 
 all:

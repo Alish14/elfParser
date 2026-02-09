@@ -8,5 +8,5 @@ int main(int argc,char **argv)
         printf("usage: %s <elf_file>\n",argv[0]);
         return 1;
     }
-    parse_elf(argv[1]);
+    parse_ident_elf(argv[1]);
 }
