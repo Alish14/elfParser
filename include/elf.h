@@ -13,3 +13,8 @@
 #define EI_NIDENT_VERSION 6
 #define EI_NIDENT_OSABI 7
 #define EI_NIDENT_ABIVERSION 8
+
+/***************************************************
+* ELF header marcros
+****************************************************/
+#define START_ELF_HEADER_AFTER_IDENT_IDX 16

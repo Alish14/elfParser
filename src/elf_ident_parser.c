@@ -138,36 +138,34 @@ get_ident_dump(unsigned char *magic_chars){
  * 
 */
 void 
-parse_ident_elf(const char *filename)
+parse_ident_elf(const char *filename,ElfIdent *eident_values)
 {
-    ElfIdent eident_values;
-
     FILE *fptr=fopen(filename,"rb");
     if(!fptr){
         printf("fopen");
         return;
     }
 
-    if(get_magic_number(eident_values.e_ident,fptr)<0){
+    if(get_magic_number(eident_values->e_ident,fptr)<0){
         printf("Not an ELF file \n");
         fclose(fptr);
         return;
     }
     printf("ELF file detected!\n");
 
-    get_ident_dump(eident_values.e_ident);
+    get_ident_dump(eident_values->e_ident);
 
-    if(get_elf_format(eident_values.e_ident,&eident_values) < 0){
+    if(get_elf_format(eident_values->e_ident,eident_values) < 0){
         printf("error on detecting elf format closing peacefully");
         fclose(fptr);
         return;
     }
-    if(get_ident_data_format(eident_values.e_ident,&eident_values)<0){
+    if(get_ident_data_format(eident_values->e_ident,eident_values)<0){
         printf("error on extract data format on eident");
         fclose(fptr);
         return;
     }
-    get_ident_other_data(eident_values.e_ident,&eident_values);
+    get_ident_other_data(eident_values->e_ident,eident_values);
 
     fclose(fptr);
 }
