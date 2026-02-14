@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
-#include "elf_parser.h"
+#include "elf_header_parser.h"
 
 /**
  * @brief Decode ELF file type.

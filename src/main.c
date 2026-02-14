@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-#include "elf_parser.h"
+#include "elf_header_parser.h"
 
 int main(int argc,char **argv)
 {
