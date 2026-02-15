@@ -5,6 +5,8 @@
 
 /**
  * @brief Decode segment type to string.
+ * 
+ * @param tpye e_type from ELF Header
  */
 const char* get_segment_type(uint32_t type)
 {
@@ -25,6 +27,8 @@ const char* get_segment_type(uint32_t type)
  * 
  * @brief Parse all program headers in ELF64 file.
  * 
+ * @param filename path to the binary file
+ * @param elfHeader pointer to Elfheader for using its parameters
  */
 
 void get_program_headers(const char* filename,ElfHeader* elfHeader)
