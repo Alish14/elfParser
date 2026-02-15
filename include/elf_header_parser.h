@@ -1,5 +1,5 @@
-#ifndef ELF_PARSER_H
-#define ELF_PARSER_H
+#ifndef ELF_HEADER_PARSER_H
+#define ELF_HEADER_PARSER_H
 
 #include <stdint.h>
 #include "elf.h"
