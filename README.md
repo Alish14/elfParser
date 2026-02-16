@@ -53,7 +53,7 @@ The purpose of this project is to:
 
 ## Build
 
-Compile using gcc:
+Compile using Makefile:
 
 ```bash
 make
@@ -70,7 +70,7 @@ make
 Example:
 
 ```bash
-./elf_parser ./a.out
+./elf_parser ./elf_parser
 ```
 
 ---
