@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include "elf_header_parser.h"
 #include "elf_phdr_parser.h"
+#include "elf_sec_parser.h"
+
 int main(int argc,char **argv)
 {
     ElfIdent eident_values;
@@ -16,5 +18,7 @@ int main(int argc,char **argv)
     parse_elf_header(argv[1],&elf_hdr);
     printf("%lu\n", sizeof(Elf64_Phdr));
     get_program_headers(argv[1],&elf_hdr);
+    get_sec_headers(argv[1],&elf_hdr);
+
     return 0;
 }

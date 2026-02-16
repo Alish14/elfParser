@@ -40,6 +40,10 @@ void get_program_headers(const char* filename,ElfHeader* elfHeader)
     }
     /* Move to start of program header table */
     fseek(fptr,elfHeader->phoff,SEEK_SET);
+printf("\n");
+printf("====================================================\n");
+printf("                 Program Headers                   \n");
+printf("====================================================\n");
 
     for(uint16_t i=0; i < elfHeader->phnum;i++){
         

@@ -138,6 +138,10 @@ void get_other_data(ElfHeader *header, FILE *fptr, size_t offset)
  */
 void parse_elf_header(const char *filename, ElfHeader *header)
 {
+    printf("\n");
+printf("====================================================\n");
+printf("                 ELF Headers                   \n");
+printf("====================================================\n");
     uint16_t e_type;
     uint16_t e_machine;
     size_t offset = 16; /* e_ident size */
